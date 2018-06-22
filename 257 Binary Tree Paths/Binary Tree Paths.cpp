@@ -23,7 +23,13 @@ public:
     
     void binaryTreePathsAux(TreeNode* root)
     {
-        if(root == NULL)
+        path.push_back(root->val);
+        if(root->left != NULL)
+            binaryTreePathsAux(root->left);
+        if(root->right != NULL)
+            binaryTreePathsAux(root->right);
+        
+        if(root->left == NULL && root->right == NULL)
         {
             string temp = to_string(path[0]);
             for(int i = 1;i<path.size();i++)
@@ -31,12 +37,8 @@ public:
                 temp = temp + "->" + to_string(path[i]);
             }
             res.push_back(temp);
-            return;    
         }
         
-        path.push_back(root->val);
-        binaryTreePathsAux(root->left);
-        binaryTreePathsAux(root->right);
         path.pop_back();
         return;
     }
