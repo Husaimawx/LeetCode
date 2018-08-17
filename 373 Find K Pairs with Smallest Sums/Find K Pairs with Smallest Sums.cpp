@@ -20,3 +20,35 @@ public:
         return result;
     }
 };
+
+class Solution {
+public:
+    vector<pair<int, int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) 
+    {
+        vector<pair<int,int>> res;
+        if(nums1.empty() || nums2.empty() || k <=0 )
+            return res;
+        
+        auto cmp = [](const pair<int,int> a, const pair<int,int> b)
+        {
+            return (a.first+a.second > b.first+b.second);
+        };
+        priority_queue<pair<int,int>, vector<pair<int,int>>, decltype(cmp)> minHeap(cmp);
+        
+        for(auto n : nums1)
+            for(auto m : nums2)
+            {
+                minHeap.emplace(pair<int,int>(n,m));
+                if()
+            }
+        
+        if(k > nums1.size()*nums2.size())
+            k = nums1.size()*nums2.size();
+        for(int i = 0;i<k;i++)
+        {
+            res.push_back(minHeap.top());
+            minHeap.pop();
+        }
+        return res;
+    }
+};
