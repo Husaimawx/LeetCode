@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool canPartitionKSubsets(vector<int>& nums, int k) {
-        sort(nums.begin(),nums.end());
         int sum = 0;
         for(int i = 0;i<nums.size();i++)
         {
@@ -22,8 +21,6 @@ public:
         {
             if(visited[i] == false)
                 continue;
-            if(nums[i] + curSum > target)
-                break;
             visited[i] = false;
             if(helper(nums, k, target, i+1, curSum+nums[i], visited))
                 return true;
