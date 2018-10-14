@@ -30,6 +30,8 @@ public:
 class Solution {
 public:
     int jump(vector<int>& nums) {
+        if(nums.size() == 1)
+            return 0;
         vector<int> res(nums.size(),INT_MAX);
         res[0] = 0;
         deque<int> dq;
@@ -38,6 +40,11 @@ public:
         while(dq.size() != 0)
         {
             int now = dq[0];
+            if(nums[now] == 0)
+            {
+                dq.pop_front();
+                continue;
+            }
             int from = dq[dq.size()-1]+1;
             int to = min(int(nums.size())-1,now+nums[now]);
             for(int i = from;i<=to;i++)
